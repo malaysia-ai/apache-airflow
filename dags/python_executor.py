@@ -33,7 +33,7 @@ for i in range(10):
     second_run_task = PythonOperator(
         task_id=f'second_run_{i}',
         python_callable = second_run,
-        op_kwargs = {'i' : i},
+        op_kwargs = {'k' : i},
         dag=dag,
     )
     run_task.set_downstream(second_run_task)
