@@ -16,7 +16,7 @@ dag = DAG(
 username = Variable.get('mongodb-user')
 password = Variable.get('mongodb-password')
 
-def callable_virtualenv():
+def callable_virtualenv(username, password, **kwargs):
     from pymongo.mongo_client import MongoClient
     from pymongo.server_api import ServerApi
 
@@ -32,5 +32,6 @@ PythonVirtualenvOperator(
     task_id="callable_virtualenv_task",
     requirements="pymongo",
     python_callable=callable_virtualenv,
+    op_kwargs = {'username' : username, 'password': password},
     dag=dag,
 )
