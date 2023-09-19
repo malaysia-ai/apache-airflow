@@ -15,6 +15,8 @@ dag = DAG(
 def run(i, **kwargs):
     # simulate long IO
     time.sleep(random.randint(1, 30))
+    if random.random() > 0.5:
+        raise
     print(f'run {i}')
 
 def second_run(k, **kwargs):
