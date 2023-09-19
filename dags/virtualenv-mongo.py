@@ -12,12 +12,14 @@ dag = DAG(
     schedule = '*/10 * * * *',
 )
 
+
+username = Variable.get('mongodb-user')
+password = Variable.get('mongodb-password')
+
 def callable_virtualenv():
     from pymongo.mongo_client import MongoClient
     from pymongo.server_api import ServerApi
 
-    username = Variable.get('mongodb-user')
-    password = Variable.get('mongodb-password')
     uri = f"mongodb+srv://{username}:{password}@cluster0.ntovpqz.mongodb.net/?retryWrites=true&w=majority"
     client = MongoClient(uri, server_api=ServerApi('1'))
     try:
