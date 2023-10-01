@@ -42,7 +42,7 @@ def run(**kwargs):
 run_task = PythonOperator(
         task_id='run',
         python_callable = run,
-        # queue = "kubernetes", #run in kubernetes pod
+        queue = "kubernetes", #run in kubernetes pod
         dag=dag,
     )
 
