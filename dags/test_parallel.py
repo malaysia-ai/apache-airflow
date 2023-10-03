@@ -26,7 +26,8 @@ def run_4(ti):
 
 with DAG(
     'MyDAG-1', 
-    schedule_interval='@daily', 
+    start_date=datetime(2019, 12, 30),
+    schedule = '*/5 * * * *',
     catchup=False
 ) as dag:
     
