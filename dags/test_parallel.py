@@ -25,7 +25,7 @@ def run_4(ti):
     print("answers")
 
 with DAG(
-    'MyDAG', 
+    'MyDAG-1', 
     schedule_interval='@daily', 
     default_args=default_args, 
     catchup=False

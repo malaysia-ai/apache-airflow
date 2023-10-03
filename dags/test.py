@@ -1,59 +1,38 @@
+from airflow.operators.dummy import DummyOperator
+from airflow.models.baseoperator import chain, cross_downstream
 from airflow.models import DAG
 from datetime import datetime
-import time
-import random
-from airflow.operators.python_operator import PythonOperator
 
-def run_1(ti):
-    val = random.randint(10, 30)
-    ti.xcom_push(key='value_1', value=val)
 
-def run_2(ti):
-    run_1_val = ti.xcom_pull(key='value_1', task_ids='run_1')
-    val = run_1_val * 5
-    if random.random() > 0.5:
-        raise
-    ti.xcom_push(key='answer', value=val)
+dag = DAG(
+    dag_id='EXAMPLE-dependency',
+    start_date=datetime(2019, 12, 30),
+    catchup=False,
+    schedule_interval=None
+)
 
-def run_3(ti):
-    run_1_val = ti.xcom_pull(key='value_3', task_ids='run_1')
-    val = run_1_val * 10
-    ti.xcom_push(key='answer', value=val)
 
-def run_4(ti):
-    answers = ti.xcom_pull(key='value', task_ids=['run_2', 'run_3']
-    print("answers")
+def _(task_id):
+    return DummyOperator(task_id=task_id, dag=dag)
 
-with DAG(
-    'EXAMPLE-dependency', 
-    schedule_interval='@daily', 
-    default_args=default_args, 
-    catchup=False
-) as dag:
-    
-    run_1 = PythonOperator(
-        task_id='run_1',
-        provide_context= True,
-        python_callable = run_1,
-    )
+a_1 = _('a_1')
+a_2 = _('a_2')
+a_3 = _('a_3')
+a_4 = _('a_4')
 
-    run_2 = PythonOperator(
-        task_id='run_2',
-        provide_context= True,
-        python_callable = run_2,
-    )
+a_1.set_downstream([a_2, a_3])
+a_4.set_upstream([a_2, a_3])
 
-    run_3 = PythonOperator(
-        task_id='run_1',
-        provide_context= True,
-        python_callable = run_1,
-    )
+_('b_1') >> [_('b_2'), _('b_3')] >> _('b_4')
 
-    run_4 = PythonOperator(
-        task_id='run_2',
-        provide_context= True,
-        python_callable = run_2,
-    )
+cross_downstream(
+    [_('c_1'), _('c_2')],
+    [_('c_3'), _('c_4')]
+)
 
-    # Now, we set the dependencies downstream and, using a list of tasks, our parallel tasks dependency before last_task
-    run_1 >> [run_2, run_3] >> run_4
+chain(*[
+    _('d_1'),
+    [_('d_2'), _('d_3')],
+    _('d_4'),
+])
+
