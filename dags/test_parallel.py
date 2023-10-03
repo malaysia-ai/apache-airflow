@@ -16,7 +16,7 @@ def run_2(ti):
     ti.xcom_push(key='answer', value=val)
 
 def run_3(ti):
-    run_1_val = ti.xcom_pull(key='value_3', task_ids='run_1')
+    run_1_val = ti.xcom_pull(key='value_1', task_ids='run_1')
     val = run_1_val * 10
     ti.xcom_push(key='answer', value=val)
 
