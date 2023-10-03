@@ -27,7 +27,6 @@ def run_4(ti):
 with DAG(
     'MyDAG-1', 
     schedule_interval='@daily', 
-    default_args=default_args, 
     catchup=False
 ) as dag:
     
