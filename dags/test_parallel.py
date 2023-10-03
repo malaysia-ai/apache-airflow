@@ -21,7 +21,7 @@ def run_3(ti):
     ti.xcom_push(key='answer', value=val)
 
 def run_4(ti):
-    answers = ti.xcom_pull(key='value', task_ids=['run_2', 'run_3']
+    answers = ti.xcom_pull(key='value', task_ids=['run_2', 'run_3'])
     print("answers")
 
 with DAG(
