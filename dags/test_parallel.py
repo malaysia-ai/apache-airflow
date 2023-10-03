@@ -44,15 +44,15 @@ with DAG(
     )
 
     run_3 = PythonOperator(
-        task_id='run_1',
+        task_id='run_3',
         provide_context= True,
-        python_callable = run_1,
+        python_callable = run_3,
     )
 
     run_4 = PythonOperator(
-        task_id='run_2',
+        task_id='run_4',
         provide_context= True,
-        python_callable = run_2,
+        python_callable = run_4,
     )
 
     # Now, we set the dependencies downstream and, using a list of tasks, our parallel tasks dependency before last_task
