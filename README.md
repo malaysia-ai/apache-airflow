@@ -51,7 +51,7 @@ $ ls -lh /etc/alternatives/java
 
 ### 4. Custom image is ready
 
-Now that the image is used for setting up an Airflow instance or cluster. [airflow.yaml](https://github.com/malaysia-ai/infra/blob/main/airflow/airflow.yaml#L68)
+Now that the image is used for setting up an Airflow instance or cluster in [airflow.yaml](https://github.com/malaysia-ai/infra/blob/main/airflow/airflow.yaml#L68)
 
 ```yaml
 # Default airflow repository -- overridden by all the specific images below
