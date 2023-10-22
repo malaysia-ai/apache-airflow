@@ -49,4 +49,13 @@ $ ls /etc/alternatives/java
 $ ls -lh /etc/alternatives/java
 ```
 
+### 4. Custom image is ready
 
+Now the new image will be used in airflow.yaml 
+
+[Airflow.yaml](https://github.com/malaysia-ai/infra/blob/main/airflow/airflow.yaml#L68)
+
+```yaml
+# Default airflow repository -- overridden by all the specific images below
+defaultAirflowRepository: malaysiaai/airflow
+```
