@@ -1,5 +1,7 @@
 # Apache Airflow (with spark)
 
+We are extending the Airflow Dockerfile to include PySpark, ensuring that the pods have both Spark and Java capabilities
+
 ### 1. Extend airflow default image
 
 The Dockerfile extends the official Apache Airflow image by adding support for Apache Spark. It installs the necessary dependencies, such as PySpark and OpenJDK 11.
