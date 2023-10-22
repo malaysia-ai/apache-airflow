@@ -1,4 +1,4 @@
-# Malaysia AI Apache Airflow (with spark)
+# Apache Airflow (with spark)
 
 ### 1. Extend airflow default image
 
