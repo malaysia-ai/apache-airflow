@@ -36,7 +36,7 @@ docker build -t malaysiaai/airflow:2.7.1 .
 docker push malaysiaai/airflow:2.7.1
 ```
 
-### 4. Custom image is ready
+### 3. Custom image is ready
 
 Now that the image is used for setting up an Airflow instance or cluster in [airflow.yaml](https://github.com/malaysia-ai/infra/blob/main/airflow/airflow.yaml#L68)
 
