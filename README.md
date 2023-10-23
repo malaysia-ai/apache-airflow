@@ -17,8 +17,6 @@ FROM apache/airflow:2.7.1
 ```dockerfile
 RUN pip3 install pyspark
 
-# Install OpenJDK 11
-
 RUN apt-get update -y && \
     apt-get install -y openjdk-11-jdk
 
