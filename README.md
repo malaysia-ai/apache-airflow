@@ -8,13 +8,13 @@ The Dockerfile extends the official Apache Airflow image by adding support for A
 
 1. Start with the official Apache Airflow image
    
-```
+```dockerfile
 FROM apache/airflow:2.7.1
 ```
 
 2. Install PySpark and OpenJDK 11 for Spark support
    
-```
+```dockerfile
 RUN pip3 install pyspark
 
 # Install OpenJDK 11
@@ -32,8 +32,8 @@ Build the image and push to our dockerhub
 https://hub.docker.com/repository/docker/malaysiaai/airflow/general
 
 ```bash
-docker build -t malaysiaai/airflow:2.7.1 .
-docker push malaysiaai/airflow:2.7.1
+$ docker build -t malaysiaai/airflow:2.7.1 .
+$ docker push malaysiaai/airflow:2.7.1
 ```
 
 ### 3. Custom image is ready
@@ -43,6 +43,9 @@ Now that the image is used for setting up an Airflow instance or cluster in [air
 ```yaml
 # Default airflow repository -- overridden by all the specific images below
 defaultAirflowRepository: malaysiaai/airflow
+
+# Default airflow tag to deploy
+defaultAirflowTag: "2.7.1"
 ```
 
 ### Optional: Checking Java within the Container
@@ -50,10 +53,10 @@ defaultAirflowRepository: malaysiaai/airflow
 Accessing the Container's Shell
 
 ```bash
-docker build -t malaysiaai/airflow:2.7.1 .
-docker run -it malaysiaai/airflow:2.7.1 bash -c "sleep 9999999999"
-docker container ls
-docker exec -it <imageid> bash
+$ docker build -t malaysiaai/airflow:2.7.1 .
+$ docker run -it malaysiaai/airflow:2.7.1 bash -c "sleep 9999999999"
+$ docker container ls
+$ docker exec -it <imageid> bash
 ```
 
 Once inside the container's shell, you can inspect Java as follows:
